@@ -1,9 +1,13 @@
 from lib.misskey import Misskey
+from dotenv import load_dotenv
 from flask import *
 import json
+import os
+
+load_dotenv('.env.local')
 
 app = Flask(__name__)
-misskey_client = Misskey('6PBIBfhBCqntpVF2LtgrL16Cx1joUi5c')
+misskey_client = Misskey(os.getenv('API_KEY'))
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

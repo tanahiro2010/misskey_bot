@@ -17,7 +17,7 @@ def log(message: str) -> None:
     timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
     print(f"{timestamp} -> {message}")
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['POST'])
 def index():
     data: dict = request.json
     request_type = data['type']
@@ -87,6 +87,10 @@ def index():
             log("    Failed to send message.")
 
     return json.dumps({'message': 'Hello World!'})
+
+@app.route('/hello', methods=['GET'])
+def hello():
+    return 'Hello World!'
 
 def main():
     if self_data is None:
